@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Image;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
@@ -17,7 +21,33 @@ class ImageController extends Controller
     }
 
     public function save(Request $request){
-        var_dump($request);
-        die();
+        //Validacion
+        $validate = $this->validate($request, [
+            'description' => 'required',
+            'image_path' => 'required|mimes:jpg,bmp,png'
+        ]);
+        
+        //recoger los datos
+        $image_path = $request->file('image_path');
+        $description = $request->input('description');
+
+        //asignar valores a un nuevo objeto de imagen
+        $user = Auth::user();
+        $imagen = new Image();
+        $imagen->user_id = $user->id;
+        $imagen->image_path = null;
+        $imagen->description = $description;
+
+        //subir la imagen
+        if($image_path){
+            $image_path_name = time().$image_path->getClientOriginalName();
+            Storage::disk('images')->put($image_path_name, File::get($image_path));
+            $imagen->image_path = $image_path_name;
+        }
+        $imagen->save();//guarda en la base de datos, este metodo save parece q viene por defecto
+
+        return redirect()->route('home')->with([
+            'message' => 'La imagen se ha subido correctamente!'
+        ]);
     }
 }
