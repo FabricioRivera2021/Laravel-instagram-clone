@@ -33,9 +33,11 @@
                                 <p>{{$image->description}}</p>
                             </div>
                         </div>
-
                     </div>
                 @endforeach
+            </div>
+            <div class="clearfix">
+                {{$images->links()}}
             </div>
         </div>
     </div>
