@@ -7,6 +7,8 @@ use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Response;
+
 
 class ImageController extends Controller
 {
@@ -49,5 +51,10 @@ class ImageController extends Controller
         return redirect()->route('home')->with([
             'message' => 'La imagen se ha subido correctamente!'
         ]);
+    }
+
+    public function getImage($filename){
+        $file = Storage::disk('images')->get($filename);
+        return new Response($file, 200); //esto devuelve las imagenes desde los discos virtuales
     }
 }

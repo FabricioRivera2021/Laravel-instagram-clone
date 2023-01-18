@@ -3,13 +3,43 @@ form .avatar{
     margin-bottom: 5px;
 }
 
-.navbar .container-avatar{
+.pub_image{
+    margin-bottom: 25px;
+}
+
+.navbar .container-avatar,
+.pub_image .container-avatar{
+    margin-right: 15px;
     width: 40px;
     height: 40px;
     border-radius: 50px;
     overflow: hidden;
 }
 
-.navbar .container-avatar img{
+.navbar .container-avatar img,
+.pub_image .container-avatar img{
     height: 100%;
+}
+
+.card-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.image-container{
+    overflow: hidden;
+    width: 100%;
+}
+
+.pub_image .card-body{
+    padding: 0;
+}
+
+.pub_image .description{
+    padding: 20px;
+}
+
+.nickname{
+    color: gray;
 }

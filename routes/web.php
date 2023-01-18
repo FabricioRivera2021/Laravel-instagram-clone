@@ -47,4 +47,5 @@ Route::post('/user/update', [App\Http\Controllers\UserController::class, 'update
 Route::get('/user/avatar/{filename}', [App\Http\Controllers\UserController::class, 'getImage'])->name('user.avatar');
 Route::get('/image-Upload', [App\Http\Controllers\ImageController::class, 'create'])->name('image.create');
 Route::post('/image/save', [App\Http\Controllers\ImageController::class, 'save'])->name('image.save');
+Route::get('/image/file/{filename}', [App\Http\Controllers\ImageController::class, 'getImage'])->name('image.file');
 
