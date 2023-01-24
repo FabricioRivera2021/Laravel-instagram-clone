@@ -46,6 +46,32 @@ form .avatar{
 
 .pub_image .description{
     padding: 20px;
+    padding-bottom: 0;
+}
+
+.heart{
+    margin-right: 20px;
+    color: palevioletred;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: color 0.5s;
+}
+
+.heart:hover{
+    color: crimson;
+}
+
+.pub_image .btn-comments{
+    margin: 20px;
+    margin-top: 0;
+}
+
+.comment_likes{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .nickname{

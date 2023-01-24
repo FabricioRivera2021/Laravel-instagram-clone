@@ -57,4 +57,12 @@ class ImageController extends Controller
         $file = Storage::disk('images')->get($filename);
         return new Response($file, 200); //esto devuelve las imagenes desde los discos virtuales
     }
+
+    public function detail($id){
+        $image = Image::find($id);//el metodo find busca una imagen, en este caso mediente la id
+
+        return view('images.detail', [
+            'image' => $image
+        ]);
+    }
 }
