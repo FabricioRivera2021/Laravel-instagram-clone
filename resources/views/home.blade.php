@@ -16,19 +16,22 @@
                             </div>
 
                             <div class="data-user">
-                                <a href="{{ route('image.detail', ['id' => $image->id]) }}">ir a imagen</a>
                                 {{ $image->user->name . ' ' . $image->user->surname }}
                                 <span class="nickname">{{ ' - @'.$image->user->nick }}</span>
+                                <span class="date">
+                                    {{ $image->created_at->diffForHumans() }}
+                                </span>
                             </div>
 
                         </div>
 
                         <div class="card-body">
+                            <a href="{{ route('image.detail', ['id' => $image->id]) }}">
                             <div class="image-container">
-                                <img class="post-img" src="{{ route('image.file', ['filename'=>$image->image_path]) }}" alt="post-img">
-                            </div>
+                                    <img class="post-img" src="{{ route('image.file', ['filename'=>$image->image_path]) }}" alt="post-img">
+                                </div>
+                            </a>
                             <div class="likes">
-
                             </div>
                             <div class="description">
                                 <p>{{$image->description}}</p>

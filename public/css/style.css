@@ -77,3 +77,10 @@ form .avatar{
 .nickname{
     color: gray;
 }
+
+.date{
+    margin-top: 1px;
+    margin-left: 1px;
+    color: gray;
+    font-style: italic;
+}
