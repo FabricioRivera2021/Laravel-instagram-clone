@@ -27,7 +27,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
         //configurar fechas en español con carbon
-        Carbon::setUTF8(true);
         Carbon::setLocale('es');
         setlocale(LC_ALL, 'es_MX', 'es', 'ES', 'es_MX.utf8');
     }
