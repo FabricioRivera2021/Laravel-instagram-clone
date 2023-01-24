@@ -30,10 +30,18 @@ form .avatar{
 .image-container{
     overflow: hidden;
     width: 100%;
+    max-height: 534px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .pub_image .card-body{
     padding: 0;
+}
+
+.card-body .post-img{
+    width: 100%;
 }
 
 .pub_image .description{

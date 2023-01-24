@@ -24,7 +24,7 @@
 
                         <div class="card-body">
                             <div class="image-container">
-                                <img class="avatar" src="{{ route('image.file', ['filename'=>$image->image_path]) }}" alt="avatar">
+                                <img class="post-img" src="{{ route('image.file', ['filename'=>$image->image_path]) }}" alt="post-img">
                             </div>
                             <div class="likes">
 
