@@ -84,3 +84,12 @@ form .avatar{
     color: gray;
     font-style: italic;
 }
+
+.comment-container{
+    margin: 20px;
+    margin-top: 5px;
+}
+
+.btn-comments{
+    margin: 5px;
+}
