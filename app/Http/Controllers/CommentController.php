@@ -39,4 +39,27 @@ class CommentController extends Controller
                             'status' => "Has ingresado un comentario con exito"
                          ]);
     }
+
+    public function delete($id){
+        //recoger datos del usuario identificado
+        $user = Auth::user();
+
+        //conseguir el objeto del comentario a borrar
+        $comment = Comment::find($id);
+
+        //comprobar si el usuario logueado es el dueño del comentario o de la imagen publicada
+        if($user && ($comment->user_id == $user->user_id || $comment->image->user_id == $user->id)){
+            $comment->delete();
+
+            return redirect()->route('image.detail', ['id' => $comment->image->id])
+                             ->with([
+                                'status' => "Comentario eliminado con exito"
+                             ]);
+        }else{
+            return redirect()->route('image.detail', ['id' => $comment->image->id])
+                             ->with([
+                                'status' => "No se ha podido eliminar el comentario"
+                             ]);
+        }
+    }
 }

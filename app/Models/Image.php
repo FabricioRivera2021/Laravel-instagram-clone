@@ -11,8 +11,8 @@ class Image extends Model
     protected $table = 'images';//imdica cual va a ser la tabla que modifica el modelo
     
     //relacion 1 a muchos / comentarios en una imagen
-    public function comments(){
-        return $this->hasMany('App\Models\Comment');
+    public function comments(){                     //con este order by cuando se realize la peticion a la BD seran ordenados de mas nuevo a mas viejo
+        return $this->hasMany('App\Models\Comment')->orderBy('id', 'desc');
     }
 
     //relacion 1 a muchos / likes en una imagen

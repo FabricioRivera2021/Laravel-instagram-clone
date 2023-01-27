@@ -112,3 +112,11 @@ form .avatar{
     padding-left: 20px;
     margin-bottom: 25px;
 }
+
+.fa-trash{
+    color: red;
+}
+
+.fa-trash:hover{
+    color: orangered;
+}
