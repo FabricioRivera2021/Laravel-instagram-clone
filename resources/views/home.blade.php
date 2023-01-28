@@ -22,7 +22,6 @@
                                     {{ $image->created_at->diffForHumans() }}
                                 </span>
                             </div>
-
                         </div>
 
                         <div class="card-body">
@@ -39,7 +38,25 @@
                             <div class="comment_likes">
                                 <a href="#" class="btn btn-warning btn-sm btn-comments">Comentarios ({{count($image->comments)}}) </a>
                                 {{-- usando el count() se puede mostrar la cantidad de algo que halla en la DB vinculado a algo en este caso los coments --}}
-                                <i class="heart fa fa-heart fa-2x"></i>
+                                <?php $user_like = false; ?>
+                                @foreach($image->likes as $like){{--Con el foreach se puede entrar a los arrays que contienen la data de los id de usuario--}}
+                                    @if($like->user->id == Auth::user()->id)
+                                        <?php $user_like = true; ?>
+                                    @endif
+                                @endforeach
+
+                                @if($user_like)
+                                <span class="heart-container fa fa-stack">
+                                    <i class="redheart fa fa-stack-2x fa-heart fa-2x"><a href="#"></a></i>
+                                    <i class="likes-counter fa fa-stack-1x">{{ count($image->likes) }}</i>
+                                </span>
+                                @else
+                                <span class="heart-container fa fa-stack">
+                                    <i class="heart fa fa-stack-2x fa-heart fa-2x"><a href="#"></a></i>
+                                    <i class="likes-counter fa fa-stack-1x">0</i>
+                                </span>
+                                @endif
+                            
                             </div>
                         </div>
                     </div>
