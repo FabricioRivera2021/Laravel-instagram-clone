@@ -46,12 +46,12 @@
                                 @endforeach
 
                                 @if($user_like)
-                                <span class="heart-container fa fa-stack">
-                                    <i class="redheart fa fa-stack-2x fa-heart fa-2x"><a href="#"></a></i>
+                                <span class="heart-container fa fa-stack" data-id="{{$image->id}}">
+                                    <i class="heart redheart fa fa-stack-2x fa-heart fa-2x"><a href="#"></a></i>
                                     <i class="likes-counter fa fa-stack-1x">{{ count($image->likes) }}</i>
                                 </span>
                                 @else
-                                <span class="heart-container fa fa-stack">
+                                <span class="heart-container fa fa-stack" data-id="{{$image->id}}">
                                     <i class="heart fa fa-stack-2x fa-heart fa-2x"><a href="#"></a></i>
                                     <i class="likes-counter fa fa-stack-1x">0</i>
                                 </span>
