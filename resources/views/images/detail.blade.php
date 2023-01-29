@@ -4,6 +4,11 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10">
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
                 <div class="card pub_image">
                     <div class="card-header">
                         <div class="container-avatar">
@@ -51,11 +56,42 @@
                             @endif
                         </div>
 
-                        @if(Auth::user() && (Auth::user()->id == $image->user_id))
-                        <div class="actions">
-                            <a href="" class="btn btn-sm btn-primary">Cambiar imagen</a>
-                            <a href="{{ route('image.delete', ['id' => $image->id]) }}" class="btn btn-sm btn-danger">Borrar imagen</a>
-                        </div>
+                        @if (Auth::user() && Auth::user()->id == $image->user_id)
+                            <div class="actions">
+                                <a href="{{ route('image.edit', ['id' => $image->id]) }}"
+                                    class="btn btn-sm btn-primary">Editar</a>
+
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                    Eliminar
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Eliminar imagen</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Esta a punto de eliminar una imagen junto con todos los comentarios que esta
+                                                tiene, estas seguro?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cancelar</button>
+                                                <a href="{{ route('image.delete', ['id' => $image->id]) }}"
+                                                    class="btn btn-danger">Eliminar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         @endif
 
                         <div class="comment-container">

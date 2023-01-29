@@ -56,4 +56,6 @@ Route::get('/dislike/{image_id}', [App\Http\Controllers\LikeController::class, '
 Route::get('/likes', [App\Http\Controllers\LikeController::class, 'likes'])->name('likes');
 Route::get('/profile/{id}', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');
 Route::get('/image/delete/{id}', [App\Http\Controllers\ImageController::class, 'delete'])->name('image.delete');
+Route::get('/image/edit/{id}', [App\Http\Controllers\ImageController::class, 'edit'])->name('image.edit');
+Route::post('/image/update', [App\Http\Controllers\ImageController::class, 'update'])->name('image.update');
 
