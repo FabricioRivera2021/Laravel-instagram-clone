@@ -3,6 +3,10 @@ form .avatar {
     margin-bottom: 5px;
 }
 
+.avatar-profile{
+    width: 300px;
+}
+
 .pub_image {
     margin-bottom: 25px;
 }
@@ -16,9 +20,29 @@ form .avatar {
     overflow: hidden;
 }
 
+.profile-avatar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
 .navbar .container-avatar img,
 .pub_image .container-avatar img {
     height: 100%;
+}
+
+.data-user-profile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .card-header {
@@ -139,4 +163,8 @@ form .avatar {
 
 .fa-trash:hover {
     color: orangered;
+}
+
+a{
+    text-decoration: none;
 }

@@ -66,4 +66,15 @@ class LikeController extends Controller
             ]);
         }
     }
+
+    public function likes(){
+        $user = Auth::user();
+        $likes = Like::where('user_id', $user->id)
+            ->orderBy('id', 'desc')
+            ->paginate(5);
+            
+        return view('like.likes', [
+            'likes' => $likes
+        ]);
+    }
 }

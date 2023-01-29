@@ -31,7 +31,24 @@
                         <div class="comment_likes">
                             <h3 class="btn-comments">Comentarios ({{ count($image->comments) }})</h3>
                             {{-- usando el count() se puede mostrar la cantidad de algo que halla en la DB vinculado a algo en este caso los coments --}}
-                            <i class="heart fa fa-heart fa-2x"></i>
+                            <?php $user_like = false; ?>
+                            @foreach ($image->likes as $like)
+                                {{-- Con el foreach se puede entrar a los arrays que contienen la data de los id de usuario --}}
+                                @if ($like->user->id == Auth::user()->id)
+                                    <?php $user_like = true; ?>
+                                @endif
+                            @endforeach
+                            @if ($user_like)
+                                <span class="heart-container fa fa-stack" data-id="{{ $image->id }}">
+                                    <i class="heart redheart fa fa-stack-2x fa-heart fa-2x"><a href="#"></a></i>
+                                    <i class="likes-counter fa fa-stack-1x">{{ count($image->likes) }}</i>
+                                </span>
+                            @else
+                                <span class="heart-container fa fa-stack" data-id="{{ $image->id }}">
+                                    <i class="heart fa fa-stack-2x fa-heart fa-2x"><a href="#"></a></i>
+                                    <i class="likes-counter fa fa-stack-1x">0</i>
+                                </span>
+                            @endif
                         </div>
 
                         <div class="comment-container">
@@ -43,11 +60,12 @@
                                             {{ $comment->content }}
                                         </div>
                                         <span class="nickname">
-                                            @if(Auth::check() && (($comment->user_id == Auth::user()->id || $comment->image->user_id == Auth::user()->id)))
-                                            <a href="{{ route('comment.delete', ['id' => $comment->id]) }}"
-                                                class="fa fa-trash"></a>
+                                            @if (Auth::check() && ($comment->user_id == Auth::user()->id || $comment->image->user_id == Auth::user()->id))
+                                                <a href="{{ route('comment.delete', ['id' => $comment->id]) }}"
+                                                    class="fa fa-trash"></a>
                                             @endif
-                                            {{ ' - @' . $comment->user->nick }} {{ $comment->created_at->diffForHumans() }}
+                                            {{ ' - @' . $comment->user->nick }}
+                                            {{ $comment->created_at->diffForHumans() }}
                                         </span>
                                     </div>
                                 @endforeach

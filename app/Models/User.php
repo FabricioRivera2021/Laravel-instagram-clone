@@ -48,7 +48,7 @@ class User extends Authenticatable
     //Empieza el codigo del proyecto
     //todas las imagenes de un usuario
     public function images(){
-        return $this->hasMany('App\Models\Images');
+        return $this->hasMany('App\Models\Image');
     }
 }
  

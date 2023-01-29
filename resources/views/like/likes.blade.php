@@ -4,12 +4,10 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                @foreach ($images as $image)
-                    @include('includes.publication', ['image' => $image])
+                <h1>Mis imagenes favoritas</h1>
+                @foreach($likes as $like)
+                    @include('includes.publication', ['image' => $like->image])
                 @endforeach
-            </div>
-            <div class="clearfix">
-                {{$images->links()}}
             </div>
         </div>
     </div>
