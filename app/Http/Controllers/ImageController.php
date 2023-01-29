@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Image;
+use App\Models\Comment;
+use App\Models\Like;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -64,5 +66,38 @@ class ImageController extends Controller
         return view('images.detail', [
             'image' => $image
         ]);
+    }
+
+    public function delete($id){
+        //consiguiendo el user logueado
+        $user = Auth::user();
+        //consiguiendo la imagen que hay q borrar, y los comentarios y los likes de la misma
+        $image = Image::find($id);
+        $comments = Comment::where('image_id', $id)->get();
+        $likes = Like::where('image_id', $id)->get();
+
+        if($user && $image && $image->user_id == $user->id){//si el user logueado es el mismo que creo la imagen
+            //eliminar comentarios
+            if($comments && count($comments) >= 1){//si los comentarios existen
+                foreach($comments as $comment){
+                    $comment->delete();
+                }
+            }
+            //eliminar likes
+            if($likes && count($likes) >= 1){//si los comentarios existen
+                foreach($likes as $like){
+                    $like->delete();
+                }
+            }
+            //eliminar los archivos de imagen guardados en el storage
+            Storage::disk('images')->delete($image->image_path);
+            //eliminar el registro de la imagen
+            $image->delete();
+            
+            $message = array('status' => 'La imagen se ha eliminado correctamente');
+        }else{
+            $message = array('status' => 'La imagen no se ha eliminado, ocurrio un error');
+        }
+        return redirect()->route('home')->with($message);
     }
 }

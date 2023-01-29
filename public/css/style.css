@@ -91,7 +91,7 @@ form .avatar {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: color 0.5s;
+    transition: color 0.1s;
 }
 
 .redheart {
@@ -100,7 +100,7 @@ form .avatar {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: color 0.5s;
+    transition: color 0.1s;
 }
 
 .heart:hover {

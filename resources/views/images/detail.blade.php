@@ -51,6 +51,13 @@
                             @endif
                         </div>
 
+                        @if(Auth::user() && (Auth::user()->id == $image->user_id))
+                        <div class="actions">
+                            <a href="" class="btn btn-sm btn-primary">Cambiar imagen</a>
+                            <a href="{{ route('image.delete', ['id' => $image->id]) }}" class="btn btn-sm btn-danger">Borrar imagen</a>
+                        </div>
+                        @endif
+
                         <div class="comment-container">
 
                             <div class="show-comments">
@@ -60,7 +67,7 @@
                                             {{ $comment->content }}
                                         </div>
                                         <span class="nickname">
-                                            @if (Auth::check() && ($comment->user_id == Auth::user()->id || $comment->image->user_id == Auth::user()->id))
+                                            @if (Auth::check() && ($comment->user_id == Auth::user()->id || $comment->user_id == Auth::user()->id))
                                                 <a href="{{ route('comment.delete', ['id' => $comment->id]) }}"
                                                     class="fa fa-trash"></a>
                                             @endif
