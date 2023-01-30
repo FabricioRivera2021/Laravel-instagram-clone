@@ -177,3 +177,23 @@ a{
 .actions .btn{
     margin-left: 10px;
 }
+
+.users-info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 15px;
+    background-color: beige;
+    border-radius: 30px;
+}
+
+.users-info h3{
+    margin-right: 10px;
+}
+
+.users-info .profile-avatar{
+    margin-left: 15px;
+    width: 300px;
+    overflow: hidden;
+    border-radius: 20px;
+}
