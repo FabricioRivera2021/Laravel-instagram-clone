@@ -12,7 +12,7 @@ class Like extends Model
 
     //relacion 1 a muchos / Imagen creada por un usuario
     public function image(){
-        return $this->belongsTo('App\Models\Image', 'user_id');
+        return $this->belongsTo('App\Models\Image', 'image_id');
     }
 
     //relacion muchos a 1 / comentario creado por un usuario
