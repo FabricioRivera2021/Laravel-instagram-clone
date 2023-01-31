@@ -197,3 +197,7 @@ a{
     overflow: hidden;
     border-radius: 20px;
 }
+
+.search-bar{
+    margin-bottom: 20px;
+}

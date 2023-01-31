@@ -79,8 +79,16 @@ class UserController extends Controller
         ]);
     }
 
-    public function users(){
-        $users = User::orderBy('id','desc')->paginate(5);
+    public function users($search = null){
+        if(!empty($search)){//si nick no esta vacio
+            $users = User::where('nick', 'LIKE', '%'.$search.'%')//CONSULTA SQL que busca los nicks como el parametro q se esta pasando por get
+                        ->orWhere('name', 'LIKE', '%'.$search.'%')//orwhere es otra condicional concatenada para buscar tambien el nombre
+                        ->orWhere('surname', 'LIKE', '%'.$search.'%')//y ademas el apellido
+                        ->orderBy('id','desc')
+                        ->paginate(5);
+        }else{
+            $users = User::orderBy('id','desc')->paginate(5);
+        }
 
         return view('user.users', [
             'users' => $users

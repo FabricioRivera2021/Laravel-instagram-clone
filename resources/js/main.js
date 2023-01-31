@@ -20,3 +20,14 @@ likeBtn.forEach((btn) => {
         }
     });
 });
+
+//Buscador
+const search = document.getElementById('searchForm')
+const searchWord = document.getElementById('search')
+
+search.addEventListener('submit', ()=>{
+    let searchWord = document.getElementById('search').value;
+    console.log(searchWord);
+
+    search.setAttribute('action', url+'users/'+searchWord);
+});

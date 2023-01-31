@@ -46,7 +46,7 @@ Auth::routes();
 Route::get('/user/avatar/{filename}', [App\Http\Controllers\UserController::class, 'getImage'])->name('user.avatar');
 Route::post('/user/update', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
 Route::get('/configuracion', [App\Http\Controllers\UserController::class, 'config'])->name('config');
-Route::get('/users', [App\Http\Controllers\UserController::class, 'users'])->name('users');
+Route::get('/users/{nick?}', [App\Http\Controllers\UserController::class, 'users'])->name('users');
 Route::get('/profile/{id}', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');
 
 //Rutas imagenes
